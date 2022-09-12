@@ -1,9 +1,17 @@
-1. Bring it under FF `extra_payments`
-2. Prevent paying for non-UK addresses
+1. Bring it under FF `support_hardcopy`
+2. Always applied for UK addresses
+
+| in UK | FF    | Result|
+|-------|-------|-------|
+| true  | true  | true  |
+| true  | false | true  |
+| false | true  | true  |
+| false | false | false |
 
 ```ruby
-return unless Flipper['extra_payments'].enabled?
-raise "Unsupported address #{address.id}" unless address.in_uk?
+Command.save(invoice).tap { |result|
+  create_invoice_hardcopy.call(invoice: result) if address.in_uk? || Flipper['support_hardcopy'].enabled?
+}
 ```
 
 ```ruby

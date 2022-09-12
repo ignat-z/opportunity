@@ -3,6 +3,9 @@ require './lib/entry_point'
 
 require './lib/payments_container'
 
+require './lib/create_invoice_hardcopy/action'
+require './lib/create_invoice_hardcopy/entry_point'
+
 require './lib/get_address/action'
 require './lib/get_address/entry_point'
 
@@ -18,9 +21,15 @@ class MyAr
     $memory["#{self.name.downcase}_#{id}"]
   end
 
+  def self.count
+    $memory.keys.count { _1.include?(self.name.downcase) }
+  end
+
   attr_accessor :id
 
   def save!
+    self.id ||= rand(2048)
+    $memory["#{self.class.name.downcase}_#{id}"] = self
     true
   end
 end
@@ -45,9 +54,12 @@ module Flipper
   end
 
   def self.[](attr)
-    $ffs ||= { 'extra_payments' => Record.new }
+    $ffs ||= { 'support_hardcopy' => Record.new }
     $ffs.fetch(attr)
   end
+end
+
+class InvoiceHardcopy < MyAr
 end
 
 class Invoice < MyAr

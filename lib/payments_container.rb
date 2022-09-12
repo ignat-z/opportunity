@@ -10,6 +10,10 @@ class PaymentsContainer
   register "process_payment" do
     ::ProcessPayment::EntryPoint
   end
+
+  register "create_invoice_hardcopy" do
+    ::CreateInvoiceHardcopy::EntryPoint
+  end
 end
 
 PaymentsDependencies = Dry::AutoInject(PaymentsContainer)
