@@ -28,6 +28,7 @@ class MyAr
   attr_accessor :id
 
   def save!
+    sleep(THROTTLING)
     self.id ||= rand(2048)
     $memory["#{self.class.name.downcase}_#{id}"] = self
     true
