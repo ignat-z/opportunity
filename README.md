@@ -1,3 +1,10 @@
+# Installation
+
+`bundle install`
+`bundle exec rspec`
+
+# Problem
+
 1. Bring it under FF `support_hardcopy`
 2. Always applied for UK addresses
 
