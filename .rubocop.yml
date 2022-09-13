@@ -1,0 +1,32 @@
+require: rubocop-rspec
+
+AllCops:
+  NewCops: enable
+
+Lint/MissingSuper:
+  Exclude:
+    - 'main.rb'
+
+Naming/MethodParameterName:
+  Exclude:
+    - 'main.rb'
+
+RSpec/VerifiedDoubles:
+  Exclude:
+    - 'spec/spec_helper.rb'
+
+Style/Documentation:
+  Exclude:
+    - 'spec/**/*'
+    - 'test/**/*'
+    - 'lib/**/*'
+    - 'main.rb'
+
+Style/GlobalVars:
+  Exclude:
+    - 'main.rb'
+    - 'spec/spec_helper.rb'
+
+Style/OptionalBooleanParameter:
+  Exclude:
+    - 'main.rb'

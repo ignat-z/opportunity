@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module ProcessPayment
   class Action
     include ::PaymentsDependencies['get_address']

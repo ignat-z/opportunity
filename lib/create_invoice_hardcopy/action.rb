@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module CreateInvoiceHardcopy
   class Action
     def initialize(invoice:)

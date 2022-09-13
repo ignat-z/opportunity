@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 require './lib/command'
 require './lib/entry_point'
 
@@ -18,11 +20,11 @@ $memory = {}
 class MyAr
   def self.find(id)
     sleep(THROTTLING)
-    $memory["#{self.name.downcase}_#{id}"]
+    $memory["#{name.downcase}_#{id}"]
   end
 
   def self.count
-    $memory.keys.count { _1.include?(self.name.downcase) }
+    $memory.keys.count { _1.include?(name.downcase) }
   end
 
   attr_accessor :id
@@ -89,6 +91,6 @@ class Address < MyAr
   end
 
   def text
-    @uk ? "UK" : "non-UK"
+    @uk ? 'UK' : 'non-UK'
   end
 end

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Command
   class << self
     def save(record)
