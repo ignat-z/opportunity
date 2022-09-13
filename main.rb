@@ -14,7 +14,7 @@ require './lib/get_address/entry_point'
 require './lib/process_payment/entry_point'
 require './lib/process_payment/action'
 
-THROTTLING = 0.1
+THROTTLING = 0.002
 $memory = {}
 
 class MyAr

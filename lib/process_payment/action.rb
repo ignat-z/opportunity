@@ -2,7 +2,10 @@
 
 module ProcessPayment
   class Action
-    include ::PaymentsDependencies['get_address']
+    include ::PaymentsDependencies[
+      'get_address',
+      'create_invoice_hardcopy'
+    ]
 
     def initialize(payment:, **deps)
       super(**deps)
@@ -13,7 +16,10 @@ module ProcessPayment
     def call
       address = get_address.call(payment: @payment)
       invoice = Invoice.new(attributes(address))
-      Command.save(invoice)
+
+      Command.save(invoice).tap do
+        create_invoice_hardcopy.call(invoice: _1) if address.in_uk? || Flipper['support_hardcopy'].enabled?
+      end
     end
 
     private
